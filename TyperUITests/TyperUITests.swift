@@ -1,13 +1,13 @@
 //
-//  VoiceTranscriberUITests.swift
-//  VoiceTranscriberUITests
+//  TyperUITests.swift
+//  TyperUITests
 //
 //  Created by Libo Shen on 28/11/2024.
 //
 
 import XCTest
 
-final class VoiceTranscriberUITests: XCTestCase {
+final class TyperUITests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.

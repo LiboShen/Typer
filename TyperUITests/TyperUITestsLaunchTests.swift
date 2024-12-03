@@ -1,13 +1,13 @@
 //
-//  VoiceTranscriberUITestsLaunchTests.swift
-//  VoiceTranscriberUITests
+//  TyperUITestsLaunchTests.swift
+//  TyperUITests
 //
 //  Created by Libo Shen on 28/11/2024.
 //
 
 import XCTest
 
-final class VoiceTranscriberUITestsLaunchTests: XCTestCase {
+final class TyperUITestsLaunchTests: XCTestCase {
 
     override class var runsForEachTargetApplicationUIConfiguration: Bool {
         true

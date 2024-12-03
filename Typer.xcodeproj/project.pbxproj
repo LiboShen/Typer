@@ -12,37 +12,37 @@
 			containerPortal = 4F57DDFE2CF8CD3A0038FDC6 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 4F57DE052CF8CD3A0038FDC6;
-			remoteInfo = VoiceTranscriber;
+			remoteInfo = Typer;
 		};
 		4F57DE222CF8CD3C0038FDC6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 4F57DDFE2CF8CD3A0038FDC6 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 4F57DE052CF8CD3A0038FDC6;
-			remoteInfo = VoiceTranscriber;
+			remoteInfo = Typer;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		4F57DE062CF8CD3A0038FDC6 /* VoiceTranscriber.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VoiceTranscriber.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		4F57DE172CF8CD3C0038FDC6 /* VoiceTranscriberTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VoiceTranscriberTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		4F57DE212CF8CD3C0038FDC6 /* VoiceTranscriberUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VoiceTranscriberUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F57DE062CF8CD3A0038FDC6 /* Typer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Typer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F57DE172CF8CD3C0038FDC6 /* TyperTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TyperTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F57DE212CF8CD3C0038FDC6 /* TyperUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TyperUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		4F57DE082CF8CD3A0038FDC6 /* VoiceTranscriber */ = {
+		4F57DE082CF8CD3A0038FDC6 /* Typer */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = VoiceTranscriber;
+			path = Typer;
 			sourceTree = "<group>";
 		};
-		4F57DE1A2CF8CD3C0038FDC6 /* VoiceTranscriberTests */ = {
+		4F57DE1A2CF8CD3C0038FDC6 /* TyperTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = VoiceTranscriberTests;
+			path = TyperTests;
 			sourceTree = "<group>";
 		};
-		4F57DE242CF8CD3C0038FDC6 /* VoiceTranscriberUITests */ = {
+		4F57DE242CF8CD3C0038FDC6 /* TyperUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = VoiceTranscriberUITests;
+			path = TyperUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -75,9 +75,9 @@
 		4F57DDFD2CF8CD3A0038FDC6 = {
 			isa = PBXGroup;
 			children = (
-				4F57DE082CF8CD3A0038FDC6 /* VoiceTranscriber */,
-				4F57DE1A2CF8CD3C0038FDC6 /* VoiceTranscriberTests */,
-				4F57DE242CF8CD3C0038FDC6 /* VoiceTranscriberUITests */,
+				4F57DE082CF8CD3A0038FDC6 /* Typer */,
+				4F57DE1A2CF8CD3C0038FDC6 /* TyperTests */,
+				4F57DE242CF8CD3C0038FDC6 /* TyperUITests */,
 				4F57DE072CF8CD3A0038FDC6 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -85,9 +85,9 @@
 		4F57DE072CF8CD3A0038FDC6 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4F57DE062CF8CD3A0038FDC6 /* VoiceTranscriber.app */,
-				4F57DE172CF8CD3C0038FDC6 /* VoiceTranscriberTests.xctest */,
-				4F57DE212CF8CD3C0038FDC6 /* VoiceTranscriberUITests.xctest */,
+				4F57DE062CF8CD3A0038FDC6 /* Typer.app */,
+				4F57DE172CF8CD3C0038FDC6 /* TyperTests.xctest */,
+				4F57DE212CF8CD3C0038FDC6 /* TyperUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -95,9 +95,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		4F57DE052CF8CD3A0038FDC6 /* VoiceTranscriber */ = {
+		4F57DE052CF8CD3A0038FDC6 /* Typer */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4F57DE2B2CF8CD3C0038FDC6 /* Build configuration list for PBXNativeTarget "VoiceTranscriber" */;
+			buildConfigurationList = 4F57DE2B2CF8CD3C0038FDC6 /* Build configuration list for PBXNativeTarget "Typer" */;
 			buildPhases = (
 				4F57DE022CF8CD3A0038FDC6 /* Sources */,
 				4F57DE032CF8CD3A0038FDC6 /* Frameworks */,
@@ -108,18 +108,18 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				4F57DE082CF8CD3A0038FDC6 /* VoiceTranscriber */,
+				4F57DE082CF8CD3A0038FDC6 /* Typer */,
 			);
-			name = VoiceTranscriber;
+			name = Typer;
 			packageProductDependencies = (
 			);
-			productName = VoiceTranscriber;
-			productReference = 4F57DE062CF8CD3A0038FDC6 /* VoiceTranscriber.app */;
+			productName = Typer;
+			productReference = 4F57DE062CF8CD3A0038FDC6 /* Typer.app */;
 			productType = "com.apple.product-type.application";
 		};
-		4F57DE162CF8CD3C0038FDC6 /* VoiceTranscriberTests */ = {
+		4F57DE162CF8CD3C0038FDC6 /* TyperTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4F57DE2E2CF8CD3C0038FDC6 /* Build configuration list for PBXNativeTarget "VoiceTranscriberTests" */;
+			buildConfigurationList = 4F57DE2E2CF8CD3C0038FDC6 /* Build configuration list for PBXNativeTarget "TyperTests" */;
 			buildPhases = (
 				4F57DE132CF8CD3C0038FDC6 /* Sources */,
 				4F57DE142CF8CD3C0038FDC6 /* Frameworks */,
@@ -131,18 +131,18 @@
 				4F57DE192CF8CD3C0038FDC6 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				4F57DE1A2CF8CD3C0038FDC6 /* VoiceTranscriberTests */,
+				4F57DE1A2CF8CD3C0038FDC6 /* TyperTests */,
 			);
-			name = VoiceTranscriberTests;
+			name = TyperTests;
 			packageProductDependencies = (
 			);
-			productName = VoiceTranscriberTests;
-			productReference = 4F57DE172CF8CD3C0038FDC6 /* VoiceTranscriberTests.xctest */;
+			productName = TyperTests;
+			productReference = 4F57DE172CF8CD3C0038FDC6 /* TyperTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		4F57DE202CF8CD3C0038FDC6 /* VoiceTranscriberUITests */ = {
+		4F57DE202CF8CD3C0038FDC6 /* TyperUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4F57DE312CF8CD3C0038FDC6 /* Build configuration list for PBXNativeTarget "VoiceTranscriberUITests" */;
+			buildConfigurationList = 4F57DE312CF8CD3C0038FDC6 /* Build configuration list for PBXNativeTarget "TyperUITests" */;
 			buildPhases = (
 				4F57DE1D2CF8CD3C0038FDC6 /* Sources */,
 				4F57DE1E2CF8CD3C0038FDC6 /* Frameworks */,
@@ -154,13 +154,13 @@
 				4F57DE232CF8CD3C0038FDC6 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				4F57DE242CF8CD3C0038FDC6 /* VoiceTranscriberUITests */,
+				4F57DE242CF8CD3C0038FDC6 /* TyperUITests */,
 			);
-			name = VoiceTranscriberUITests;
+			name = TyperUITests;
 			packageProductDependencies = (
 			);
-			productName = VoiceTranscriberUITests;
-			productReference = 4F57DE212CF8CD3C0038FDC6 /* VoiceTranscriberUITests.xctest */;
+			productName = TyperUITests;
+			productReference = 4F57DE212CF8CD3C0038FDC6 /* TyperUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -186,7 +186,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 4F57DE012CF8CD3A0038FDC6 /* Build configuration list for PBXProject "VoiceTranscriber" */;
+			buildConfigurationList = 4F57DE012CF8CD3A0038FDC6 /* Build configuration list for PBXProject "Typer" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -200,9 +200,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				4F57DE052CF8CD3A0038FDC6 /* VoiceTranscriber */,
-				4F57DE162CF8CD3C0038FDC6 /* VoiceTranscriberTests */,
-				4F57DE202CF8CD3C0038FDC6 /* VoiceTranscriberUITests */,
+				4F57DE052CF8CD3A0038FDC6 /* Typer */,
+				4F57DE162CF8CD3C0038FDC6 /* TyperTests */,
+				4F57DE202CF8CD3C0038FDC6 /* TyperUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -258,12 +258,12 @@
 /* Begin PBXTargetDependency section */
 		4F57DE192CF8CD3C0038FDC6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 4F57DE052CF8CD3A0038FDC6 /* VoiceTranscriber */;
+			target = 4F57DE052CF8CD3A0038FDC6 /* Typer */;
 			targetProxy = 4F57DE182CF8CD3C0038FDC6 /* PBXContainerItemProxy */;
 		};
 		4F57DE232CF8CD3C0038FDC6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 4F57DE052CF8CD3A0038FDC6 /* VoiceTranscriber */;
+			target = 4F57DE052CF8CD3A0038FDC6 /* Typer */;
 			targetProxy = 4F57DE222CF8CD3C0038FDC6 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -392,12 +392,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = VoiceTranscriber/VoiceTranscriber.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Typer/Typer.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"VoiceTranscriber/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Typer/Preview Content\"";
 				DEVELOPMENT_TEAM = C5724T2PXR;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -408,7 +408,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.liboshen.VoiceTranscriber;
+				PRODUCT_BUNDLE_IDENTIFIER = com.liboshen.Typer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -420,12 +420,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = VoiceTranscriber/VoiceTranscriber.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Typer/Typer.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"VoiceTranscriber/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Typer/Preview Content\"";
 				DEVELOPMENT_TEAM = C5724T2PXR;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -436,7 +436,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.liboshen.VoiceTranscriber;
+				PRODUCT_BUNDLE_IDENTIFIER = com.liboshen.Typer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -452,11 +452,11 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 15.1;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.liboshen.VoiceTranscriberTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.liboshen.TyperTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/VoiceTranscriber.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/VoiceTranscriber";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Typer.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Typer";
 			};
 			name = Debug;
 		};
@@ -469,11 +469,11 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 15.1;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.liboshen.VoiceTranscriberTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.liboshen.TyperTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/VoiceTranscriber.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/VoiceTranscriber";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Typer.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Typer";
 			};
 			name = Release;
 		};
@@ -484,11 +484,11 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.liboshen.VoiceTranscriberUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.liboshen.TyperUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TEST_TARGET_NAME = VoiceTranscriber;
+				TEST_TARGET_NAME = Typer;
 			};
 			name = Debug;
 		};
@@ -499,18 +499,18 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.liboshen.VoiceTranscriberUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.liboshen.TyperUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TEST_TARGET_NAME = VoiceTranscriber;
+				TEST_TARGET_NAME = Typer;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		4F57DE012CF8CD3A0038FDC6 /* Build configuration list for PBXProject "VoiceTranscriber" */ = {
+		4F57DE012CF8CD3A0038FDC6 /* Build configuration list for PBXProject "Typer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4F57DE292CF8CD3C0038FDC6 /* Debug */,
@@ -519,7 +519,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4F57DE2B2CF8CD3C0038FDC6 /* Build configuration list for PBXNativeTarget "VoiceTranscriber" */ = {
+		4F57DE2B2CF8CD3C0038FDC6 /* Build configuration list for PBXNativeTarget "Typer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4F57DE2C2CF8CD3C0038FDC6 /* Debug */,
@@ -528,7 +528,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4F57DE2E2CF8CD3C0038FDC6 /* Build configuration list for PBXNativeTarget "VoiceTranscriberTests" */ = {
+		4F57DE2E2CF8CD3C0038FDC6 /* Build configuration list for PBXNativeTarget "TyperTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4F57DE2F2CF8CD3C0038FDC6 /* Debug */,
@@ -537,7 +537,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4F57DE312CF8CD3C0038FDC6 /* Build configuration list for PBXNativeTarget "VoiceTranscriberUITests" */ = {
+		4F57DE312CF8CD3C0038FDC6 /* Build configuration list for PBXNativeTarget "TyperUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4F57DE322CF8CD3C0038FDC6 /* Debug */,
