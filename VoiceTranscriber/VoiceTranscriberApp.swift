@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct VoiceTranscriberApp: App {
+    @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            EmptyView()
         }
+        .windowStyle(HiddenTitleBarWindowStyle())
     }
 }

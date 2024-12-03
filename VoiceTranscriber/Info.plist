@@ -4,5 +4,9 @@
 <dict>
     <key>NSMicrophoneUsageDescription</key>
     <string>This app needs access to microphone to transcribe your voice.</string>
+    <key>NSAccessibilityUsageDescription</key>
+    <string>This app needs accessibility access to insert transcribed text at the cursor position.</string>
+    <key>Privacy - Accessibility Usage Description</key>
+    <string>This app needs accessibility access to insert transcribed text at the cursor position.</string>
 </dict>
 </plist>
