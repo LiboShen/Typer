@@ -11,6 +11,7 @@ struct ContentView: View {
     @State private var permissionGranted = false
     @State private var showPermissionAlert = false
     @State private var accessibilityEnabled = false
+    @StateObject private var settings = SettingsManager.shared
     let audioFilename: URL = {
         let tempDir = FileManager.default.temporaryDirectory
         let tempFile = tempDir.appendingPathComponent("recording.m4a")
@@ -21,7 +22,7 @@ struct ContentView: View {
     var body: some View {
         Color(
             isRecording
-                ? NSColor(red: 1, green: 0, blue: 0, alpha: 0.6)
+                ? NSColor(red: 1, green: 0.23, blue: 0.19, alpha: 0.6)
                 : NSColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.6)
         )
         .cornerRadius(15)
@@ -135,9 +136,7 @@ struct ContentView: View {
         var request = URLRequest(
             url: URL(string: "https://api.groq.com/openai/v1/audio/transcriptions")!)
         request.httpMethod = "POST"
-        request.setValue(
-            "Bearer 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",
-            forHTTPHeaderField: "Authorization")
+        request.setValue("Bearer \(settings.apiKey)", forHTTPHeaderField: "Authorization")
         request.setValue(
             "multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
 

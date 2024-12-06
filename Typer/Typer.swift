@@ -1,10 +1,3 @@
-//
-//  Typer.swift
-//  Typer
-//
-//  Created by Libo Shen on 28/11/2024. Hello, hello, hey, yo.
-//
-
 import SwiftUI
 
 @main
@@ -13,7 +6,7 @@ struct TyperApp: App {
 
     var body: some Scene {
         WindowGroup {
-            EmptyView()
+            SettingsView()
         }
         .windowStyle(HiddenTitleBarWindowStyle())
     }
