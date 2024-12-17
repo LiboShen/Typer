@@ -1,8 +1,8 @@
 import AppKit
 import ApplicationServices
 
-class TextInsertionService {
-    static let shared = TextInsertionService()
+class AccessibilityManager {
+    static let shared = AccessibilityManager()
 
     private init() {}  // Singleton
 

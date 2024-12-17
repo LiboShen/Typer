@@ -205,15 +205,15 @@ struct ContentView: View {
     }
 
     func insertText(_ text: String) {
-        TextInsertionService.shared.insertText(text)
+        AccessibilityManager.shared.insertText(text)
     }
 
     func checkAccessibilityPermissions() -> Bool {
-        TextInsertionService.shared.checkAccessibilityPermissions()
+        AccessibilityManager.shared.checkAccessibilityPermissions()
     }
 
     func getFocusedWindowInfo() {
-        TextInsertionService.shared.getFocusedWindowInfo()
+        AccessibilityManager.shared.getFocusedWindowInfo()
     }
 
 }
