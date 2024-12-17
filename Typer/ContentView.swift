@@ -2,6 +2,7 @@ import AVFoundation
 import AppKit
 import ApplicationServices
 import Carbon.HIToolbox.Events
+import Cocoa
 import CoreGraphics
 import SwiftUI
 
@@ -45,17 +46,6 @@ struct ContentView: View {
                 secondaryButton: .cancel()
             )
         }
-    }
-
-    func checkAccessibilityPermissions() -> Bool {
-        let options =
-            NSDictionary(
-                object: kCFBooleanTrue!,
-                forKey: kAXTrustedCheckOptionPrompt.takeUnretainedValue() as NSString)
-            as CFDictionary
-        let accessibilityEnabled = AXIsProcessTrustedWithOptions(options)
-        print(accessibilityEnabled ? "Accessibility enabled" : "Accessibility disabled")
-        return accessibilityEnabled
     }
 
     func openSystemPreferences() {
@@ -120,6 +110,9 @@ struct ContentView: View {
         } catch {
             print("Error getting file attributes: \(error.localizedDescription)")
         }
+
+        // TODO: prepare the context and format the result based on it
+        getFocusedWindowInfo()
 
         sendAudioToGroqAPI()
     }
@@ -211,105 +204,16 @@ struct ContentView: View {
         }
     }
 
-    func insertTextAtCursor(_ text: String) -> Bool {
-        // First check if we have accessibility permissions
-        if !checkAccessibilityPermissions() {
-            DispatchQueue.main.async {
-                showPermissionAlert = true
-            }
-            return false
-        }
-
-        guard let systemWideElement = AXUIElementCreateSystemWide() as AXUIElement? else {
-            print("Failed to create system-wide accessibility element")
-            return false
-        }
-
-        var focusedElement: AnyObject?
-        let focusResult = AXUIElementCopyAttributeValue(
-            systemWideElement,
-            kAXFocusedUIElementAttribute as CFString,
-            &focusedElement
-        )
-
-        guard focusResult == .success else {
-            print("Failed to get focused element: \(focusResult)")
-            return false
-        }
-
-        // Get the role of the focused element
-        var roleRef: AnyObject?
-        let roleResult = AXUIElementCopyAttributeValue(
-            focusedElement as! AXUIElement,
-            kAXRoleAttribute as CFString,
-            &roleRef
-        )
-
-        if roleResult == .success,
-            let role = roleRef as? String
-        {
-            print("Focused element role: \(role)")
-
-            // Check if it's a text field or similar
-            guard ["AXTextField", "AXTextArea"].contains(role) else {
-                print("Focused element is not a text field")
-                return false
-            }
-        }
-
-        // Try to insert the text
-        let insertResult = AXUIElementSetAttributeValue(
-            focusedElement as! AXUIElement,
-            kAXSelectedTextAttribute as CFString,
-            text as CFTypeRef
-        )
-
-        if insertResult == .success {
-            print("Successfully inserted text")
-            return true
-        } else {
-            print("Failed to insert text: \(insertResult)")
-            return false
-        }
-    }
-
-    func insertTextViaPaste(_ text: String) {
-        // Save previous clipboard content
-        let pasteboard = NSPasteboard.general
-        let previousContent = pasteboard.string(forType: .string)
-
-        // Insert new text
-        pasteboard.clearContents()
-        pasteboard.setString(text, forType: .string)
-
-        // Simulate Command+V
-        let source = CGEventSource(stateID: .hidSystemState)
-        let vKeyDown = CGEvent(keyboardEventSource: source, virtualKey: 0x09, keyDown: true)
-        let vKeyUp = CGEvent(keyboardEventSource: source, virtualKey: 0x09, keyDown: false)
-
-        vKeyDown?.flags = .maskCommand
-        vKeyUp?.flags = .maskCommand
-
-        vKeyDown?.post(tap: .cghidEventTap)
-        vKeyUp?.post(tap: .cghidEventTap)
-
-        // Wait a brief moment to ensure paste completes
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-            // Restore previous clipboard content
-            if let previousContent = previousContent {
-                pasteboard.clearContents()
-                pasteboard.setString(previousContent, forType: .string)
-            }
-        }
-    }
-
     func insertText(_ text: String) {
-        if insertTextAtCursor(text) {
-            print("Used accessibility method to insert text")
-        } else {
-            print("Falling back to paste method")
-            insertTextViaPaste(text)
-        }
+        TextInsertionService.shared.insertText(text)
+    }
+
+    func checkAccessibilityPermissions() -> Bool {
+        TextInsertionService.shared.checkAccessibilityPermissions()
+    }
+
+    func getFocusedWindowInfo() {
+        TextInsertionService.shared.getFocusedWindowInfo()
     }
 
 }
