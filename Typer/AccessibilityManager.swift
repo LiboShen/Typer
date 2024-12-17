@@ -115,13 +115,8 @@ class AccessibilityManager {
     }
 
     private func tryMultipleInsertionMethods(text: String, element: AXUIElement) -> Bool {
-        // Method 1: Direct value setting
-        if AXUIElementSetAttributeValue(
-            element,
-            kAXValueAttribute as CFString,
-            text as CFTypeRef
-        ) == .success {
-            print("Successfully inserted text using AXValue")
+        // Method 1: Append to current value
+        if tryAppendingText(text, to: element) {
             return true
         }
 
@@ -135,8 +130,13 @@ class AccessibilityManager {
             return true
         }
 
-        // Method 3: Append to current value
-        if tryAppendingText(text, to: element) {
+        // Method 3: Direct value setting
+        if AXUIElementSetAttributeValue(
+            element,
+            kAXValueAttribute as CFString,
+            text as CFTypeRef
+        ) == .success {
+            print("Successfully inserted text using AXValue")
             return true
         }
 
