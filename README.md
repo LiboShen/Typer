@@ -10,12 +10,12 @@ Voice dictation will (if not has) become an indispensable tool for many, offerin
 
 There are two layers of privacy problem for a tool like Typer.
 
-1. The voice and text you dictate maybe collected. But you can alwasy choose to not use dictation if the subject is too sensitive. Running this speech-to-text model locally could make it bulletproof. However, that is a trade-off with the latency and memory footprint.
+1. The voice and text you dictate maybe collected. But you can always choose to not use dictation if the subject is too sensitive. Running this speech-to-text model locally could make it bulletproof. However, that is a trade-off with the latency and memory footprint.
 
 2. A much bigger problem. For such tool to do a better job, it needs the context through the accessibility API. And this API is much more powerful than most people would think.
 
 When you grant accessibility permissions to a dictation app, you're giving it:
-- Access to read all window content
+- Access to read all window content (even from applications running in background)
 - Ability to monitor all keyboard and mouse inputs
 - Permission to control your computer
 - Continuous background monitoring capabilities
@@ -39,6 +39,7 @@ Typer is built with privacy as its cornerstone:
 - Universal text insertion across macOS applications
 - Function (fn) key toggle for easy recording
 - Smart handling of different application contexts (WIP)
+- Local Voice-to-text model support (WIP)
 
 ## Requirements
 
