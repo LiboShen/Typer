@@ -97,8 +97,15 @@ struct ContentView: View {
 
     func stopRecording() {
         print("Stop recording")
+        let recordingDuration = audioRecorder?.currentTime ?? 0
         audioRecorder?.stop()
         isRecording = false
+
+        // Dismiss if recording is too short
+        if recordingDuration < 0.5 {
+            print("Recording too short, discarding")
+            return
+        }
 
         do {
             let attributes = try FileManager.default.attributesOfItem(atPath: audioFilename.path)
