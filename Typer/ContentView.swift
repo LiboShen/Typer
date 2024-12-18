@@ -119,7 +119,7 @@ struct ContentView: View {
         }
 
         // TODO: prepare the context and format the result based on it
-        getFocusedWindowInfo()
+        getContext()
 
         sendAudioToGroqAPI()
     }
@@ -219,8 +219,9 @@ struct ContentView: View {
         AccessibilityManager.shared.checkAccessibilityPermissions()
     }
 
-    func getFocusedWindowInfo() {
-        AccessibilityManager.shared.getFocusedWindowInfo()
+    func getContext() {
+        let title = AccessibilityManager.shared.getFocusedWindowTitle()
+        print("Focused window title: \(title ?? "Unknown")")
     }
 
 }

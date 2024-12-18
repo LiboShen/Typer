@@ -3,22 +3,13 @@ import ApplicationServices
 
 class AccessibilityManager {
     static let shared = AccessibilityManager()
+    private let systemWideElement: AXUIElement
 
-    private init() {}  // Singleton
+    private init() {
+        systemWideElement = AXUIElementCreateSystemWide()
+    }  // Singleton
 
     // MARK: - Public Methods
-
-    func insertText(_ text: String) {
-        let bundleIdentifier = NSWorkspace.shared.frontmostApplication?.bundleIdentifier ?? ""
-        print("Current application: \(bundleIdentifier)")
-
-        if AppBehavior.pastePreferred.contains(bundleIdentifier) {
-            insertTextViaPaste(text)
-        } else if !insertTextAtCursor(text) {
-            insertTextViaPaste(text)
-
-        }
-    }
 
     func checkAccessibilityPermissions() -> Bool {
         let options =
@@ -31,40 +22,84 @@ class AccessibilityManager {
         return accessibilityEnabled
     }
 
-    func getFocusedWindowInfo() {
-        guard let systemWideElement = AXUIElementCreateSystemWide() as AXUIElement? else { return }
+    func insertText(_ text: String) {
+        let bundleIdentifier = NSWorkspace.shared.frontmostApplication?.bundleIdentifier ?? ""
+        print("Current application: \(bundleIdentifier)")
 
-        var focusedApp: AnyObject?
-        let appResult = AXUIElementCopyAttributeValue(
-            systemWideElement,
-            kAXFocusedApplicationAttribute as CFString,
-            &focusedApp
-        )
+        if AppBehavior.pastePreferred.contains(bundleIdentifier) {
+            insertTextViaPaste(text)
+        } else if !insertTextViaAX(text) {
+            insertTextViaPaste(text)
 
-        guard appResult == .success else {
-            print("Failed to get focused application")
-            return
         }
-        let appElement = focusedApp as! AXUIElement
-
-        printWindowInfo(for: appElement)
     }
 
-    // MARK: - Private Methods
+    func getFocusedApplicationTitle() -> String? {
+        guard let appElement = getFocusedApplication() else { return nil }
 
-    private func insertTextAtCursor(_ text: String) -> Bool {
+        return getElementTitle(from: appElement)
+    }
+
+    func getFocusedWindowTitle() -> String? {
+        guard let appElement = getFocusedWindow() else { return nil }
+
+        return getElementTitle(from: appElement)
+    }
+
+    func getTextContexts() -> (before: String, selected: String, after: String)? {
+        guard let element = getFocusedElement() else { return nil }
+
+        // Try to get selected text range
+        var selectedRangeValue: AnyObject?
+        let rangeResult = AXUIElementCopyAttributeValue(
+            element,
+            kAXSelectedTextRangeAttribute as CFString,
+            &selectedRangeValue
+        )
+
+        if let fullText = getElementText(from: element),
+            rangeResult == .success
+        {
+            let selectedRange = selectedRangeValue as! AXValue
+            var range = CFRange(location: 0, length: 0)
+            AXValueGetValue(selectedRange, .cfRange, &range)
+
+            let before = String(fullText.prefix(range.location))
+            let selected = String(
+                fullText[
+                    fullText.index(
+                        fullText.startIndex, offsetBy: range.location)..<(fullText.index(
+                            fullText.startIndex, offsetBy: range.location + range.length))
+                ])
+            let after = String(fullText.suffix(fullText.count - (range.location + range.length)))
+
+            return (before: before, selected: selected, after: after)
+        }
+
+        return nil
+    }
+
+    // MARK: - Insertion Methods
+
+    private func insertTextViaAX(_ text: String) -> Bool {
         guard checkAccessibilityPermissions() else {
             print("Accessibility permissions not granted")
             return false
         }
 
-        guard let systemWideElement = AXUIElementCreateSystemWide() as AXUIElement?,
-            let element = getFocusedElement(from: systemWideElement)
-        else {
+        guard let element = getFocusedElement() else {
             return false
         }
 
-        return tryMultipleInsertionMethods(text: text, element: element)
+        if AXUIElementSetAttributeValue(
+            element,
+            kAXSelectedTextAttribute as CFString,
+            text as CFTypeRef
+        ) == .success {
+            print("Successfully inserted text using AXSelectedText")
+            return true
+        }
+        return false
     }
 
     private func insertTextViaPaste(_ text: String) {
@@ -97,7 +132,45 @@ class AccessibilityManager {
         vKeyUp?.post(tap: .cghidEventTap)
     }
 
-    private func getFocusedElement(from systemWideElement: AXUIElement) -> AXUIElement? {
+    // MARK: - Context Methods
+
+    private func getFocusedApplication() -> AXUIElement? {
+        var focusedApp: AnyObject?
+        let appResult = AXUIElementCopyAttributeValue(
+            systemWideElement,
+            kAXFocusedApplicationAttribute as CFString,
+            &focusedApp
+        )
+
+        guard appResult == .success else {
+            print("Failed to get focused application")
+            return nil
+        }
+        let appElement = focusedApp as! AXUIElement
+        return appElement
+
+    }
+
+    private func getFocusedWindow() -> AXUIElement? {
+        guard let appElement = getFocusedApplication() else { return nil }
+
+        var focusedWindow: AnyObject?
+        let windowResult = AXUIElementCopyAttributeValue(
+            appElement,
+            kAXFocusedWindowAttribute as CFString,
+            &focusedWindow
+        )
+
+        guard windowResult == .success else {
+            print("Failed to get focused window")
+            return nil
+        }
+
+        let element = focusedWindow as! AXUIElement
+        return element
+    }
+
+    private func getFocusedElement() -> AXUIElement? {
         var focusedElement: AnyObject?
         let focusResult = AXUIElementCopyAttributeValue(
             systemWideElement,
@@ -114,111 +187,34 @@ class AccessibilityManager {
         return element
     }
 
-    private func tryMultipleInsertionMethods(text: String, element: AXUIElement) -> Bool {
-        // Method 1: Append to current value
-        if tryAppendingText(text, to: element) {
-            return true
-        }
-
-        // Method 2: Selected text setting
-        if AXUIElementSetAttributeValue(
-            element,
-            kAXSelectedTextAttribute as CFString,
-            text as CFTypeRef
-        ) == .success {
-            print("Successfully inserted text using AXSelectedText")
-            return true
-        }
-
-        // Method 3: Direct value setting
-        if AXUIElementSetAttributeValue(
-            element,
-            kAXValueAttribute as CFString,
-            text as CFTypeRef
-        ) == .success {
-            print("Successfully inserted text using AXValue")
-            return true
-        }
-
-        return false
-    }
-
-    private func tryAppendingText(_ text: String, to element: AXUIElement) -> Bool {
-        var currentValue: AnyObject?
-        let getCurrentResult = AXUIElementCopyAttributeValue(
-            element,
-            kAXValueAttribute as CFString,
-            &currentValue
-        )
-
-        guard getCurrentResult == .success else {
-            return false
-        }
-
-        let currentText = currentValue as! String
-        let newValue = currentText + text
-        return AXUIElementSetAttributeValue(
-            element,
-            kAXValueAttribute as CFString,
-            newValue as CFTypeRef
-        ) == .success
-    }
-
-    private func printWindowInfo(for appElement: AXUIElement) {
-        var focusedWindow: AnyObject?
-        let windowResult = AXUIElementCopyAttributeValue(
-            appElement,
-            kAXFocusedWindowAttribute as CFString,
-            &focusedWindow
-        )
-
-        guard windowResult == .success else {
-            print("Failed to get focused window")
-            return
-        }
-
-        let windowElement = focusedWindow as! AXUIElement
-        printWindowAttributes(windowElement)
-    }
-
-    private func printWindowAttributes(_ windowElement: AXUIElement) {
-        // Print title
+    private func getElementTitle(from element: AXUIElement) -> String? {
         var titleValue: AnyObject?
         if AXUIElementCopyAttributeValue(
-            windowElement,
+            element,
             kAXTitleAttribute as CFString,
             &titleValue
         ) == .success,
             let title = titleValue as? String
         {
-            print("Focused window title: \(title)")
+            return title
         }
+        return nil
+    }
 
-        // Print position
-        var positionValue: AnyObject?
-        if AXUIElementCopyAttributeValue(
-            windowElement,
-            kAXPositionAttribute as CFString,
-            &positionValue
-        ) == .success {
-            let position = positionValue as! AXValue
-            var point = CGPoint.zero
-            AXValueGetValue(position, .cgPoint, &point)
-            print("Window position: \(point)")
-        }
+    private func getElementText(from element: AXUIElement) -> String? {
+        var valueResult: AnyObject?
+        let valueStatus = AXUIElementCopyAttributeValue(
+            element,
+            kAXValueAttribute as CFString,
+            &valueResult
+        )
 
-        // Print size
-        var sizeValue: AnyObject?
-        if AXUIElementCopyAttributeValue(
-            windowElement,
-            kAXSizeAttribute as CFString,
-            &sizeValue
-        ) == .success {
-            let size = sizeValue as! AXValue
-            var sizeStruct = CGSize.zero
-            AXValueGetValue(size, .cgSize, &sizeStruct)
-            print("Window size: \(sizeStruct)")
+        if valueStatus == .success,
+            let fullText = valueResult as? String
+        {
+            return fullText
         }
+        return nil
     }
 }
 
@@ -226,11 +222,12 @@ class AccessibilityManager {
 
 private enum AppBehavior {
     static let pastePreferred = Set([
-        "com.microsoft.VSCode",
-        "com.apple.Terminal",
-        "com.googlecode.iterm2",
-        "com.apple.Safari",
-        "com.google.Chrome",
+        //"com.microsoft.VSCode",
+        //"com.apple.Terminal",
+        //"com.googlecode.iterm2",
+        //"com.apple.Safari",
+        //"com.google.Chrome",
+        "net.whatsapp.WhatsApp"
     ])
 
     static let accessibilityPreferred = Set([
