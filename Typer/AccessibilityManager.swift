@@ -223,11 +223,12 @@ class AccessibilityManager {
 private enum AppBehavior {
     static let pastePreferred = Set([
         //"com.microsoft.VSCode",
-        //"com.apple.Terminal",
-        //"com.googlecode.iterm2",
+        "com.apple.Terminal",
+        "com.googlecode.iterm2",
         //"com.apple.Safari",
         //"com.google.Chrome",
-        "net.whatsapp.WhatsApp"
+        "md.obsidian",
+        "net.whatsapp.WhatsApp",
     ])
 
     static let accessibilityPreferred = Set([
